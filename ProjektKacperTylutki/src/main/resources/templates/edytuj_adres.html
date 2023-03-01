@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Aktualizacja prduktu</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <style>
+        .pattern
+        {
+        background: rgb(93,86,207);
+        background: linear-gradient(90deg, rgba(93,86,207,1) 0%, rgba(9,70,121,1) 28%, rgba(0,212,255,1) 100%);
+        }
+    </style>
+
+</head>
+<body class="pattern">
+<section layout:fragment="content">
+    <div class="container">
+        <h2> Edytowanie adresu:</h2>
+    </div>
+
+    <div class="container">
+        <form class="d-grid gap-3" action="#" th:object="${edytuj_adres}" method="post">
+            <div class="form-group">
+                <label> ID adresu</label>:
+                <input type="text" readonly class="form-control" th:field="${edytuj_adres.id_adresu}" value=""/>
+            </div>
+            <div class="form-group">
+                <label> Miejscowość</label>:
+                <input type="text" class="form-control" th:field="${edytuj_adres.miejscowosc}" value=""/>
+                <p class="alert alert-danger" role="alert" th:if="${# fields.hasErrors('miejscowosc')}" th:errors="*{miejscowosc}">
+            </div>
+            <div class="form-group">
+                <label> Ulica</label>:
+                <textarea cols="50" rows="4" class="form-control" th:field="*{ulica}" ></textarea>
+                <p class="alert alert-danger" role="alert" th:if="${# fields.hasErrors('ulica')}" th:errors="*{ulica}">
+            </div>
+            <div class="form-group">
+                <label> Numer Domu</label>:
+                <textarea cols="50" rows="4" class="form-control" th:field="*{nrdomu}" ></textarea>
+                <p class="alert alert-danger" role="alert" th:if="${# fields.hasErrors('nrdomu')}" th:errors="*{nrdomu}">
+            </div>
+            <div class="form-group">
+                <label> Numer Mieszkania</label>:
+                <input type="text" class="form-control" th:field="${edytuj_adres.nrmieszkania}" value=""/>
+                <p class="alert alert-danger" role="alert" th:if="${# fields.hasErrors('nrmieszkania')}" th:errors="*{nrmieszkania}">
+            </div>
+            <div class="form-group">
+                <label> Kod Pocztowy</label>:
+                <input type="text" class="form-control" th:field="${edytuj_adres.kodpocztowy}" value=""/>
+                <p class="alert alert-danger" role="alert" th:if="${# fields.hasErrors('kodpocztowy')}" th:errors="*{kodpocztowy}">
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Aktualizuj dane</button>
+                <a href="/lista_adresow" class="btn btn-info" role="button">Powrót</a>
+                <a href="/home" class="btn btn-secondary" role="button">Strona główna</a>
+            </div>
+        </form>
+    </div>
+</section>
+</body>
+</html>

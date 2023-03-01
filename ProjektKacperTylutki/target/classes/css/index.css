@@ -1,0 +1,7 @@
+.baner { display: block; margin: 0 auto; max-width: 100%; }
+.logo {display: block; margin: 0 auto; max-height: 50px; max-width: 100%;}
+.icon {display: block; margin: 0 auto; max-height: 150px; max-width: 100%;}
+.gradient-custom {
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to top, rgba(48, 207, 208, 0.45), rgba(51, 8, 103, 0.45))
+}

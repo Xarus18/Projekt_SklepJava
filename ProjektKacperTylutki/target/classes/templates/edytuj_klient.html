@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Aktualizacja klienta</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <style>
+        .pattern
+        {
+        background: rgb(93,86,207);
+        background: linear-gradient(90deg, rgba(93,86,207,1) 0%, rgba(9,70,121,1) 28%, rgba(0,212,255,1) 100%);
+        }
+    </style>
+
+</head>
+<body class="pattern">
+<section layout:fragment="content">
+    <div class="container">
+        <h2> Edytowanie klienta:</h2>
+    </div>
+
+    <div class="container">
+        <form class="d-grid gap-3" action="#" th:object="${edytuj_klienta}" method="post">
+            <div class="form-group">
+                <label> ID Klienta</label>:
+                <input type="text" readonly class="form-control" th:field="${edytuj_klient.id_klienta}" value=""/>
+            </div>
+            <div class="form-group">
+                <label> Imię</label>:
+                <input type="text" class="form-control" th:field="${edytuj_klient.imie}" value=""/>
+            </div>
+            <div class="form-group">
+                <label> Nazwisko</label>:
+                <input cols="50" class="form-control" th:field="${edytuj_klient.nazwisko}" >
+            </div>
+            <div class="form-group">
+                <label> Telefon</label>:
+                <input cols="50" class="form-control" th:field="${edytuj_klient.telefon}" >
+            </div>
+            <div class="form-group">
+                <label> E-mail</label>:
+                <input type="text" class="form-control" th:field="${edytuj_klient.email}" value=""/>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Aktualizuj dane</button>
+                <a href="/lista_klientow" class="btn btn-info" role="button">Powrót</a>
+                <a href="/home" class="btn btn-secondary" role="button">Strona główna</a>
+            </div>
+        </form>
+    </div>
+</section>
+</body>
+</html>

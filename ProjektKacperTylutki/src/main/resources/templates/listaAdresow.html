@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorator="layout">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <title>Lista Produktów</title>
+    <style>
+        .pattern
+        {
+        background: rgb(93,86,207);
+        background: linear-gradient(90deg, rgba(93,86,207,1) 0%, rgba(9,70,121,1) 28%, rgba(0,212,255,1) 100%);
+        }
+    </style>
+
+</head>
+<body class="pattern">
+<section layout:fragment="content">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE"></title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    </head>
+    <body>
+
+    <!-- Main Navigation -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a href="/home">
+            <img class="rounded float-start" width="70" src="/logoSklep.png" alt="logo_sklepu"/>
+        </a>
+
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="navbar-nav ml-auto">
+                <div class="container-md">
+                    <div class="row">
+                        <div class="col-sm" sec:authorize="isAnonymous()">
+                            <a th:href="@{/login}" class="btn btn-light"> Zaloguj </a>
+                        </div>
+                        <div class="col-sm" sec:authorize="isAuthenticated()">
+                            <a th:href="@{/wyloguj}" class="btn btn-light"> Wyloguj </a>
+                        </div>
+                        <div class="col-sm"sec:authorize="isAnonymous()">
+                            <a th:href="@{/dodaj_klienta}" class="btn btn-light"> REJESTRACJA </a>
+                        </div>
+                    </div>
+                </div>
+            </ul>
+        </div>
+    </nav>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark ">
+        <a class="navbar-brand text-white" href="/home">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown" >
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownKlient" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Użytkownicy
+                    </a>
+                    <div class="dropdown-menu " aria-labelledby="navbarDropdownKlientLink">
+                        <a class="dropdown-item" href="/lista_klientow"> Lista Klientow </a>
+                        <a class="dropdown-item" href="/dodaj_klienta"> Dodaj Klienta </a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown" >
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownPracownik" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Pracownicy
+                    </a>
+                    <div class="dropdown-menu " aria-labelledby="navbarDropdownKlientLink">
+                        <a class="dropdown-item" href="/lista_pracownikow"> Lista Pracowników </a>
+                        <a class="dropdown-item" href="/dodaj_pracownika"> Dodaj Pracownika </a>
+                        <a class="dropdown-item" href="/lista_kont"> Lista Kont </a>
+                        <a class="dropdown-item" href="/lista_adresow"> Lista Adresów </a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown" >
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownZamowienie" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Zamówienia
+                    </a>
+                    <div class="dropdown-menu " aria-labelledby="navbarDropdownKlientLink">
+                        <a class="dropdown-item" href="/lista_zamowien"> Lista Zamówień </a>
+                        <a class="dropdown-item" href="/dodaj_zamowienie"> Dodaj Zamówienie </a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown" >
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownProduktLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Produkty
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownProduktLink">
+
+                        <a class="dropdown-item" href="/add_produkt"> Dodaj Nowy Produkt </a>
+
+                    </div>
+                </li>
+
+
+                <li class="nav-item active">
+                    <a class="nav-link text-white" href="/lista_produktow"> Sklep </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    </body>
+
+    <br/>
+
+    <div class="container">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                <tr  class="active">
+                    <th>ID Adresu</th>
+                    <th>Miejscowość</th>
+                    <th>Ulica</th>
+                    <th>Numer Domu</th>
+                    <th>Numer Mieszkania</th>
+                    <th>Kod Pocztowy</th>
+                </tr>
+
+                </thead>
+                <tbody>
+                <tr th:each ="adres : ${ListaAdresow}">
+                    <td> <b  th:utext="${adres.id_adresu}">...</b> </td>
+                    <td> <b  th:utext="${adres.miejscowosc}">...</b> </td>
+                    <td> <b  th:utext="${adres.ulica}">...</b> </td>
+                    <td> <b  th:utext="${adres.nrdomu}">...</b> </td>
+                    <td> <b  th:utext="${adres.nrmieszkania}">...</b> </td>
+                    <td> <b  th:utext="${adres.kodpocztowy}">...</b> </td>
+                    <td>
+                        <a th:href="@{/edytuj_adres(Id_adresu=${adres.id_adresu})}" class="btn btn-warning">Edytuj</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="container">
+            <a href="/home" class="btn btn-secondary" role="button">Strona główna</a>
+        </div>
+
+    </div>
+</section>
+</body>
+</html>
